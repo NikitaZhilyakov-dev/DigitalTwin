@@ -1,0 +1,151 @@
+/* Global theme */
+QWidget {
+    background-color: @COLOR_BG_MAIN@;
+    color: @COLOR_TEXT_PRIMARY@;
+    font-size: @FONT_BASE_SIZE@px;
+}
+
+QMainWindow {
+    background-color: @COLOR_BG_MAIN@;
+}
+
+/* Toolbar */
+QFrame#toolbarPanel {
+    background-color: @COLOR_PANEL_BG@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 10px;
+}
+
+QPushButton {
+    background-color: @COLOR_BUTTON_BG@;
+    color: @COLOR_TEXT_PRIMARY@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton:hover {
+    border-color: @COLOR_ACCENT@;
+    background-color: @COLOR_BUTTON_HOVER_BG@;
+}
+
+QPushButton:pressed {
+    background-color: @COLOR_BUTTON_PRESSED_BG@;
+}
+
+QPushButton#accentButton {
+    background-color: @COLOR_ACCENT@;
+    color: @COLOR_WHITE@;
+    border: 1px solid @COLOR_ACCENT@;
+    font-weight: 600;
+}
+
+QPushButton#accentButton:hover {
+    background-color: @COLOR_ACCENT_HOVER@;
+    border-color: @COLOR_ACCENT_HOVER@;
+}
+
+QLabel {
+    color: @COLOR_TEXT_PRIMARY@;
+}
+
+#hintLabel {
+    color: @COLOR_TEXT_MUTED@;
+}
+
+QSpinBox {
+    background-color: @COLOR_PANEL_BG@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: @COLOR_TEXT_PRIMARY@;
+}
+
+/* Tabs */
+QTabWidget::pane {
+    border: none;
+    background: transparent;
+    margin-top: @TAB_PANE_MARGIN_TOP@px;
+}
+
+QTabBar::tab {
+    background: @COLOR_ACCENT@;
+    color: @COLOR_WHITE@;
+    border: 1px solid @COLOR_ACCENT@;
+    border-radius: 7px;
+    padding: @TAB_PADDING_V@px @TAB_PADDING_H@px;
+    margin-right: @TAB_MARGIN_RIGHT@px;
+    margin-bottom: @TAB_MARGIN_BOTTOM@px;
+    min-width: @TAB_MIN_WIDTH@px;
+    font-weight: 600;
+}
+
+QTabBar::tab:selected {
+    background: @COLOR_ACCENT_HOVER@;
+    color: @COLOR_WHITE@;
+    border-color: @COLOR_ACCENT_HOVER@;
+}
+
+QTabBar::tab:hover {
+    background: @COLOR_ACCENT_HOVER@;
+    color: @COLOR_WHITE@;
+    border-color: @COLOR_ACCENT_HOVER@;
+}
+
+/* KPI cards */
+QFrame#kpiCard {
+    background-color: @COLOR_PANEL_BG@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 10px;
+}
+
+QLabel#kpiTitle {
+    color: @COLOR_ACCENT@;
+    font-size: @FONT_KPI_TITLE_SIZE@px;
+    font-weight: 700;
+    background-color: transparent;
+}
+
+QLabel#kpiSubtitle {
+    color: @COLOR_TEXT_PRIMARY@;
+    font-size: @FONT_BASE_SIZE@px;
+    font-weight: 600;
+    background-color: transparent;
+}
+
+QLabel#kpiValue {
+    color: @COLOR_TEXT_PRIMARY@;
+    font-size: @FONT_KPI_VALUE_SIZE@px;
+    font-weight: 700;
+    margin-top: -2px;
+    background-color: transparent;
+}
+
+/* Tables */
+QTableWidget {
+    background-color: @COLOR_PANEL_BG@;
+    alternate-background-color: @COLOR_PANEL_ALT_BG@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 8px;
+    gridline-color: @COLOR_PANEL_BORDER@;
+    selection-background-color: @COLOR_ACCENT@;
+    selection-color: @COLOR_WHITE@;
+}
+
+QTableWidget::item {
+    padding: 6px 8px;
+    border-bottom: 1px solid @COLOR_PANEL_DIVIDER@;
+}
+
+QTableWidget::item:hover {
+    background-color: @COLOR_ROW_HOVER_BG@;
+}
+
+QHeaderView::section {
+    background-color: @COLOR_BUTTON_BG@;
+    color: @COLOR_TEXT_PRIMARY@;
+    border: none;
+    border-bottom: 1px solid @COLOR_PANEL_BORDER@;
+    padding: 8px;
+    font-weight: 600;
+}

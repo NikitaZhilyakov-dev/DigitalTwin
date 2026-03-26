@@ -1,0 +1,6 @@
+pandas
+ortools
+plotly
+streamlit
+streamlit-sortables
+
