@@ -78,7 +78,7 @@ class GanttWidget(QWidget):
 
     @staticmethod
     def _build_segments(data: pd.DataFrame) -> pd.DataFrame:
-        planning_base = datetime(2026, 3, 25)
+        planning_base = data["planning_date"].iloc[0] if "planning_date" in data.columns and not data.empty else datetime(2026, 3, 25)
         default_work_minutes = 8 * 60
         default_shift_start = 8 * 60
 

@@ -35,12 +35,14 @@ class OptimizationWorker(QObject):
         baseline_data: pd.DataFrame,
         priority_df: pd.DataFrame,
         time_limit_seconds: int,
+        planning_date: datetime | None = None,
     ) -> None:
         super().__init__()
         self._data = data.copy()
         self._baseline_data = baseline_data.copy()
         self._priority_df = priority_df.copy()
         self._time_limit_seconds = int(time_limit_seconds)
+        self._planning_date = planning_date
 
     @pyqtSlot()
     def run(self) -> None:
@@ -52,6 +54,7 @@ class OptimizationWorker(QObject):
                     data=self._baseline_data,
                     priority_df=self._priority_df,
                     time_limit_seconds=self._time_limit_seconds,
+                    planning_date=self._planning_date,
                     progress_callback=lambda v, m: self.progress_changed.emit(
                         max(5, min(45, int(5 + v * 0.4))), str(m)
                     ),
@@ -62,6 +65,7 @@ class OptimizationWorker(QObject):
                 data=effective_data,
                 priority_df=self._priority_df,
                 time_limit_seconds=self._time_limit_seconds,
+                planning_date=self._planning_date,
                 progress_callback=lambda v, m: self.progress_changed.emit(
                     max(50, min(100, int(50 + v * 0.5))), str(m)
                 ),
@@ -195,6 +199,7 @@ class MainWindow(QMainWindow):
         self.time_limit = toolbar_bundle.time_limit
         self.csv_file_badge = toolbar_bundle.csv_file_badge
         self.theme_btn = toolbar_bundle.theme_btn
+        self.planning_date_edit = toolbar_bundle.planning_date_edit
         root_layout.addWidget(toolbar_bundle.frame)
 
         tabs_bundle = create_main_tabs()
@@ -268,11 +273,14 @@ class MainWindow(QMainWindow):
         self._pending_changed_df = pending_changed_df
         self._pending_changed_keys = pending_changed_keys
         baseline_input_df = self.input_df_original if not self.input_df_original.empty else pd.DataFrame()
+        qd = self.planning_date_edit.date()
+        planning_date = datetime(qd.year(), qd.month(), qd.day())
         self._opt_worker = OptimizationWorker(
             data=self.input_df,
             baseline_data=baseline_input_df,
             priority_df=self.priority_df,
             time_limit_seconds=int(self.time_limit.value()),
+            planning_date=planning_date,
         )
         self._opt_worker.moveToThread(self._opt_thread)
 

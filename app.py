@@ -23,7 +23,7 @@ from project.ui_utils import (
 )
 
 
-def run_scheduler(input_dataframe: pd.DataFrame, time_limit_seconds: int = 30) -> pd.DataFrame:
+def run_scheduler(input_dataframe: pd.DataFrame, time_limit_seconds: int = 30, planning_date=None) -> pd.DataFrame:
     """
     Тонкая обёртка над существующей оптимизацией (не меняет бизнес-логику).
     """
@@ -57,6 +57,7 @@ def run_scheduler(input_dataframe: pd.DataFrame, time_limit_seconds: int = 30) -
         horizon_minutes=horizon_minutes,
         max_time_seconds=time_limit_seconds,
         product_priorities=product_priorities if product_priorities else None,
+        planning_date=planning_date,
     )
     return schedule_df
 
@@ -208,6 +209,14 @@ with st.sidebar:
     uploaded = st.file_uploader("Загрузка CSV файла", type=["csv"])
 
     time_limit_seconds = st.slider("Лимит времени оптимизации (сек)", 1, 120, 30, step=1)
+
+    import datetime as _dt
+    planning_date_input = st.date_input(
+        "Дата начала планирования",
+        value=_dt.date(2026, 3, 25),
+        format="DD.MM.YYYY",
+    )
+    planning_date = _dt.datetime(planning_date_input.year, planning_date_input.month, planning_date_input.day)
 
     schedule_ready = st.session_state.get("schedule_df") is not None
 
@@ -365,11 +374,11 @@ if run_button:
                 )
     with st.spinner("Идет оптимизация..."):
         baseline_schedule_df = (
-            run_scheduler(input_original, time_limit_seconds=time_limit_seconds)
+            run_scheduler(input_original, time_limit_seconds=time_limit_seconds, planning_date=planning_date)
             if input_original is not None
             else pd.DataFrame()
         )
-        schedule_df = run_scheduler(input_df, time_limit_seconds=time_limit_seconds)
+        schedule_df = run_scheduler(input_df, time_limit_seconds=time_limit_seconds, planning_date=planning_date)
         st.session_state["schedule_df"] = schedule_df
         st.session_state["baseline_schedule_df"] = baseline_schedule_df
 

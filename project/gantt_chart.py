@@ -10,7 +10,7 @@ def _build_segments(schedule_df: pd.DataFrame) -> pd.DataFrame:
     """Разрезает операции на рабочие дневные сегменты для корректной визуализации пауз."""
     df = schedule_df.copy()
 
-    planning_base = datetime(2026, 3, 25)
+    planning_base = df["planning_date"].iloc[0] if "planning_date" in df.columns and not df.empty else datetime(2026, 3, 25)
     default_work_minutes = 8 * 60
     default_shift_start = 8 * 60
 

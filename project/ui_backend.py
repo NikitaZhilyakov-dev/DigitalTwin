@@ -16,6 +16,7 @@ def run_scheduler(
     priority_df: Optional[pd.DataFrame] = None,
     time_limit_seconds: int = 30,
     progress_callback: Optional[Callable[[int, str], None]] = None,
+    planning_date=None,
 ) -> tuple[pd.DataFrame, SolveResult]:
     """
     Тонкая обертка над CP-SAT без изменения бизнес-логики.
@@ -47,6 +48,7 @@ def run_scheduler(
         horizon_minutes=horizon_minutes,
         max_time_seconds=time_limit_seconds,
         product_priorities=product_priorities if product_priorities else None,
+        planning_date=planning_date,
     )
     if progress_callback:
         progress_callback(85, "Формирование результата")

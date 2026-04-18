@@ -69,7 +69,7 @@ def calculate_metrics(schedule_df: pd.DataFrame) -> Dict[str, object]:
     # Это лучше отражает реальную картину с перерывами/ночью.
     if "end_datetime" in schedule_df.columns and "start_datetime" in schedule_df.columns:
         if schedule_df["end_datetime"].notna().any():
-            planning_base = datetime(2026, 3, 25)
+            planning_base = schedule_df["planning_date"].iloc[0] if "planning_date" in schedule_df.columns else datetime(2026, 3, 25)
             if "shift_start_minutes" in schedule_df.columns:
                 shift_start = int(schedule_df["shift_start_minutes"].dropna().iloc[0])
             else:
@@ -117,8 +117,10 @@ def calculate_metrics(schedule_df: pd.DataFrame) -> Dict[str, object]:
     }
 
 
-def _build_segments(df: pd.DataFrame) -> pd.DataFrame:
-    planning_base = datetime(2026, 3, 25)
+def _build_segments(df: pd.DataFrame, planning_date: datetime | None = None) -> pd.DataFrame:
+    planning_base = planning_date if planning_date is not None else (
+        df["planning_date"].iloc[0] if "planning_date" in df.columns else datetime(2026, 3, 25)
+    )
     # Время в schedule_df считается в "рабочих минутах" (ночью не течет).
     # Поэтому на Ганте разрезаем операцию на сегменты по рабочим окнам.
     default_work_minutes = 8 * 60

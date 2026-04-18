@@ -26,6 +26,7 @@ def solve_schedule(
     max_time_seconds: int = 30,
     log_search_progress: bool = False,
     product_priorities: Dict[str, int] | None = None,
+    planning_date: datetime | None = None,
 ) -> Tuple[pd.DataFrame, SolveResult]:
     """
     Строит и решает CP-SAT модель.
@@ -37,9 +38,8 @@ def solve_schedule(
     - переменные end/start в выводе соответствуют фактическому завершению обработки (без обслуживания после последней операции).
     """
     model = cp_model.CpModel()
-    # Дата начала планирования (нулевая точка времени в минутах).
-    # Визуализация/календарные расчеты от этой даты.
-    planning_date = datetime(2026, 3, 25)
+    if planning_date is None:
+        planning_date = datetime(2026, 3, 25)
 
     # Рабочий график (визуальная интерпретация):
     # - рабочий день начинается с 08:00
@@ -198,6 +198,7 @@ def solve_schedule(
         # Добавляем календарные даты (удобно для Ганта и выгрузки).
         out_df["working_minutes_per_day"] = global_work_minutes_per_day
         out_df["shift_start_minutes"] = shift_start_minutes
+        out_df["planning_date"] = planning_date
         out_df["start_datetime"] = out_df["start_time"].map(to_datetime)
         out_df["end_datetime"] = out_df["end_time"].map(to_datetime)
 
@@ -214,6 +215,9 @@ def solve_schedule(
                 "start_datetime",
                 "end_datetime",
                 "duration",
+                "working_minutes_per_day",
+                "shift_start_minutes",
+                "planning_date",
             ]
         ]
 

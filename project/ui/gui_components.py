@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtCore import QDate, QSize, Qt
 from PyQt5.QtGui import QWheelEvent
 from PyQt5.QtWidgets import (
+    QDateEdit,
     QFrame,
     QHBoxLayout,
     QLabel,
@@ -50,6 +51,7 @@ class ToolbarBundle:
     time_limit: QSpinBox
     csv_file_badge: QLabel
     theme_btn: QPushButton
+    planning_date_edit: QDateEdit
 
 
 def create_toolbar() -> ToolbarBundle:
@@ -75,6 +77,15 @@ def create_toolbar() -> ToolbarBundle:
     csv_file_badge.setMinimumWidth(220)
     time_limit_label = QLabel("Лимит времени:")
     time_limit_label.setObjectName("timeLimitLabel")
+
+    planning_date_label = QLabel("Дата начала:")
+    planning_date_label.setObjectName("timeLimitLabel")
+    planning_date_edit = QDateEdit()
+    planning_date_edit.setCalendarPopup(True)
+    planning_date_edit.setDate(QDate(2026, 3, 25))
+    planning_date_edit.setDisplayFormat("dd.MM.yyyy")
+    planning_date_edit.setFixedWidth(120)
+
     theme_btn = create_button("☀  Светлая")
     theme_btn.setObjectName("themeToggleBtn")
     theme_btn.setFixedWidth(140)
@@ -83,6 +94,8 @@ def create_toolbar() -> ToolbarBundle:
     controls_layout.addWidget(csv_file_badge)
     controls_layout.addWidget(time_limit_label)
     controls_layout.addWidget(time_limit)
+    controls_layout.addWidget(planning_date_label)
+    controls_layout.addWidget(planning_date_edit)
     controls_layout.addWidget(run_btn)
     controls_layout.addStretch(1)
     controls_layout.addWidget(theme_btn)
@@ -94,6 +107,7 @@ def create_toolbar() -> ToolbarBundle:
         time_limit=time_limit,
         csv_file_badge=csv_file_badge,
         theme_btn=theme_btn,
+        planning_date_edit=planning_date_edit,
     )
 
 
