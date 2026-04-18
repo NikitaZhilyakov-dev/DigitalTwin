@@ -69,6 +69,8 @@ def load_operations(csv_path: str) -> tuple[pd.DataFrame, dict[str, MachineParam
 
     df["maintenance_time_hours"] = _to_float_series(df["maintenance_time_hours"])
     df["maintenance_time_minutes"] = (df["maintenance_time_hours"] * 60).round().astype("Int64")
+    if "fixed_start_time" in df.columns:
+        df["fixed_start_time"] = _to_int_series(df["fixed_start_time"])
 
     df["maintenance_between_operations"] = (
         df["maintenance_between_operations"].astype(str).str.strip().str.lower()

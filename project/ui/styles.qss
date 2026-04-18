@@ -45,12 +45,42 @@ QPushButton#accentButton:hover {
     border-color: @COLOR_ACCENT_HOVER@;
 }
 
+QLabel#csvFileBadge {
+    background-color: @COLOR_PANEL_BG@;
+    color: @COLOR_TEXT_PRIMARY@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
+}
+
+QLabel#csvFileBadge[loadState="success"] {
+    background-color: #1f6f3d;
+    border: 1px solid #2a8c50;
+    color: @COLOR_WHITE@;
+}
+
+QLabel#csvFileBadge[loadState="error"] {
+    background-color: #7a2e2e;
+    border: 1px solid #9a3a3a;
+    color: @COLOR_WHITE@;
+}
+
 QLabel {
     color: @COLOR_TEXT_PRIMARY@;
 }
 
 #hintLabel {
     color: @COLOR_TEXT_MUTED@;
+}
+
+#timeLimitLabel {
+    background-color: @COLOR_BUTTON_BG@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 8px;
+    padding: 8px 10px;
+    color: @COLOR_TEXT_PRIMARY@;
+    font-weight: 600;
 }
 
 QSpinBox {
@@ -66,6 +96,25 @@ QTabWidget::pane {
     border: none;
     background: transparent;
     margin-top: @TAB_PANE_MARGIN_TOP@px;
+}
+
+QTabBar::tear {
+    width: 0;
+    border: none;
+    background: transparent;
+}
+
+QTabWidget > QTabBar {
+    border: none;
+}
+
+QTabBar {
+    border: none;
+    background: transparent;
+}
+
+QTabBar::scroller {
+    border: none;
 }
 
 QTabBar::tab {
@@ -97,6 +146,21 @@ QFrame#kpiCard {
     background-color: @COLOR_PANEL_BG@;
     border: 1px solid @COLOR_PANEL_BORDER@;
     border-radius: 10px;
+}
+
+QFrame#kpiCard[statusLevel="optimal"] {
+    background-color: #1f6f3d;
+    border: 1px solid #2a8c50;
+}
+
+QFrame#kpiCard[statusLevel="feasible"] {
+    background-color: #8a6d1f;
+    border: 1px solid #b58d28;
+}
+
+QFrame#kpiCard[statusLevel="problem"] {
+    background-color: #7a2e2e;
+    border: 1px solid #9a3a3a;
 }
 
 QLabel#kpiTitle {

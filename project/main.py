@@ -7,7 +7,7 @@ from pathlib import Path
 from PyQt5.QtCore import QLibraryInfo
 from PyQt5.QtWidgets import QApplication
 
-from .ui.gui_settings import render_stylesheet
+from .ui.gui_settings import THEME, render_stylesheet
 from .ui.main_window import MainWindow
 
 
@@ -42,9 +42,8 @@ def main() -> None:
     app = QApplication(sys.argv)
     app.setStyle("Fusion")
     styles_path = Path(__file__).resolve().parent / "ui" / "styles.qss"
-    if styles_path.exists():
-        qss_template = styles_path.read_text(encoding="utf-8")
-        app.setStyleSheet(render_stylesheet(qss_template))
+    THEME.load_template(styles_path)
+    app.setStyleSheet(THEME.current_stylesheet())
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())

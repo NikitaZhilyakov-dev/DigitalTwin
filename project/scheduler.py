@@ -69,6 +69,10 @@ def solve_schedule(
         s = model.NewIntVar(0, horizon_minutes, f"start_proc_{i}")
         e = model.NewIntVar(0, horizon_minutes, f"end_proc_{i}")
         model.Add(e == s + d_proc)
+        if "fixed_start_time" in ops.columns:
+            fixed_start = pd.to_numeric(pd.Series([row.get("fixed_start_time")]), errors="coerce").iloc[0]
+            if pd.notna(fixed_start):
+                model.Add(s == int(fixed_start))
 
         e_occ = model.NewIntVar(0, horizon_minutes + d_gap + 1, f"end_occ_{i}")
         model.Add(e_occ == s + d_occ)

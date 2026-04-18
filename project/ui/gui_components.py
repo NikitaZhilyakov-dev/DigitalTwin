@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtGui import QWheelEvent
 from PyQt5.QtWidgets import (
     QFrame,
@@ -48,6 +48,8 @@ class ToolbarBundle:
     load_btn: QPushButton
     run_btn: QPushButton
     time_limit: QSpinBox
+    csv_file_badge: QLabel
+    theme_btn: QPushButton
 
 
 def create_toolbar() -> ToolbarBundle:
@@ -66,18 +68,32 @@ def create_toolbar() -> ToolbarBundle:
     load_btn = create_button("Загрузить CSV")
     run_btn = create_button("Запустить оптимизацию", object_name="accentButton")
     time_limit = create_time_limit_spinbox()
+    csv_file_badge = QLabel("CSV не выбран")
+    csv_file_badge.setObjectName("csvFileBadge")
+    csv_file_badge.setProperty("loadState", "neutral")
+    csv_file_badge.setAlignment(Qt.AlignCenter)
+    csv_file_badge.setMinimumWidth(220)
+    time_limit_label = QLabel("Лимит времени:")
+    time_limit_label.setObjectName("timeLimitLabel")
+    theme_btn = create_button("☀ Светлая тема")
+    theme_btn.setObjectName("themeToggleBtn")
+    theme_btn.setFixedWidth(140)
 
     controls_layout.addWidget(load_btn)
-    controls_layout.addWidget(QLabel("Лимит времени:"))
+    controls_layout.addWidget(csv_file_badge)
+    controls_layout.addWidget(time_limit_label)
     controls_layout.addWidget(time_limit)
     controls_layout.addWidget(run_btn)
     controls_layout.addStretch(1)
+    controls_layout.addWidget(theme_btn)
 
     return ToolbarBundle(
         frame=toolbar_frame,
         load_btn=load_btn,
         run_btn=run_btn,
         time_limit=time_limit,
+        csv_file_badge=csv_file_badge,
+        theme_btn=theme_btn,
     )
 
 
@@ -85,6 +101,7 @@ class MainTabBar(QTabBar):
     def __init__(self, widened_indices: set[int]) -> None:
         super().__init__()
         self._widened_indices = widened_indices
+        self.setDrawBase(False)
 
     def tabSizeHint(self, index: int) -> QSize:
         size = super().tabSizeHint(index)
@@ -154,7 +171,11 @@ def create_main_tabs() -> MainTabsBundle:
     product_tab_scroll.setWidgetResizable(True)
     product_tab_scroll.setWidget(product_tab_content)
 
-    tabs.addTab(dashboard_widget, "Dashboard")
+    dashboard_tab_scroll = NoWheelScrollArea()
+    dashboard_tab_scroll.setWidgetResizable(True)
+    dashboard_tab_scroll.setWidget(dashboard_widget)
+
+    tabs.addTab(dashboard_tab_scroll, "Dashboard")
     tabs.addTab(machine_tab_scroll, "Gantt chart (станки)")
     tabs.addTab(product_tab_scroll, "Gantt chart (изделия)")
     tabs.addTab(machine_load_widget, "Загрузка станков")
