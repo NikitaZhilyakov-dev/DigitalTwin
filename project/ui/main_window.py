@@ -443,9 +443,9 @@ class MainWindow(QMainWindow):
         to_colors = THEME.dark_colors if THEME.is_dark else THEME.light_colors
         self.theme_btn.setEnabled(False)
         if THEME.is_dark:
-            self.theme_btn.setText("☀ Светлая тема")
+            self.theme_btn.setText("☀  Светлая")
         else:
-            self.theme_btn.setText("☾ Тёмная тема")
+            self.theme_btn.setText("☾  Тёмная")
 
         self._theme_timeline = QTimeLine(500, self)
         self._theme_timeline.setUpdateInterval(16)  # ~60 fps

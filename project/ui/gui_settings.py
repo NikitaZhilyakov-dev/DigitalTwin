@@ -48,60 +48,90 @@ class GuiSettings:
     FONT_KPI_VALUE_SIZE: int = 30
 
     # Colors
-    COLOR_BG_MAIN: str = "#1e1e1e"
-    COLOR_TEXT_PRIMARY: str = "#e8e8e8"
-    COLOR_TEXT_MUTED: str = "#a0a0a0"
+    COLOR_BG_MAIN: str = "#111318"
+    COLOR_TEXT_PRIMARY: str = "#e2e4ea"
+    COLOR_TEXT_MUTED: str = "#7b7f8e"
 
-    COLOR_PANEL_BG: str = "#2b2b2b"
-    COLOR_PANEL_ALT_BG: str = "#262626"
-    COLOR_PANEL_BORDER: str = "#3a3a3a"
-    COLOR_PANEL_DIVIDER: str = "#333333"
+    COLOR_PANEL_BG: str = "#1c1f27"
+    COLOR_PANEL_ALT_BG: str = "#181b22"
+    COLOR_PANEL_BORDER: str = "#2a2e3d"
+    COLOR_PANEL_DIVIDER: str = "#232736"
 
-    COLOR_BUTTON_BG: str = "#2f2f2f"
-    COLOR_BUTTON_HOVER_BG: str = "#353535"
-    COLOR_BUTTON_PRESSED_BG: str = "#2a2a2a"
-    COLOR_HEADER_BG: str = "#313131"
-    COLOR_ROW_HOVER_BG: str = "#343434"
+    COLOR_BUTTON_BG: str = "#242838"
+    COLOR_BUTTON_HOVER_BG: str = "#2d3247"
+    COLOR_BUTTON_PRESSED_BG: str = "#1e2230"
+    COLOR_HEADER_BG: str = "#20243200"
+    COLOR_ROW_HOVER_BG: str = "#2a2e42"
 
-    COLOR_ACCENT: str = "#4aa3df"
-    COLOR_ACCENT_HOVER: str = "#5ab0ea"
+    COLOR_ACCENT: str = "#6366f1"
+    COLOR_ACCENT_HOVER: str = "#818cf8"
+    COLOR_ACCENT_ACTION: str = "#f59e0b"
+    COLOR_ACCENT_ACTION_HOVER: str = "#fbbf24"
     COLOR_WHITE: str = "#ffffff"
 
 
 _DARK_COLORS: dict[str, str] = {
-    "COLOR_BG_MAIN": "#1e1e1e",
-    "COLOR_TEXT_PRIMARY": "#e8e8e8",
-    "COLOR_TEXT_MUTED": "#a0a0a0",
-    "COLOR_PANEL_BG": "#2b2b2b",
-    "COLOR_PANEL_ALT_BG": "#262626",
-    "COLOR_PANEL_BORDER": "#3a3a3a",
-    "COLOR_PANEL_DIVIDER": "#333333",
-    "COLOR_BUTTON_BG": "#2f2f2f",
-    "COLOR_BUTTON_HOVER_BG": "#353535",
-    "COLOR_BUTTON_PRESSED_BG": "#2a2a2a",
-    "COLOR_HEADER_BG": "#313131",
-    "COLOR_ROW_HOVER_BG": "#343434",
-    "COLOR_ACCENT": "#4aa3df",
-    "COLOR_ACCENT_HOVER": "#5ab0ea",
+    "COLOR_BG_MAIN": "#111318",
+    "COLOR_TEXT_PRIMARY": "#e2e4ea",
+    "COLOR_TEXT_MUTED": "#7b7f8e",
+    "COLOR_PANEL_BG": "#1c1f27",
+    "COLOR_PANEL_ALT_BG": "#181b22",
+    "COLOR_PANEL_BORDER": "#2a2e3d",
+    "COLOR_PANEL_DIVIDER": "#232736",
+    "COLOR_BUTTON_BG": "#242838",
+    "COLOR_BUTTON_HOVER_BG": "#2d3247",
+    "COLOR_BUTTON_PRESSED_BG": "#1e2230",
+    "COLOR_HEADER_BG": "#202432",
+    "COLOR_ROW_HOVER_BG": "#2a2e42",
+    "COLOR_ACCENT": "#6366f1",
+    "COLOR_ACCENT_HOVER": "#818cf8",
+    "COLOR_ACCENT_ACTION": "#f59e0b",
+    "COLOR_ACCENT_ACTION_HOVER": "#fbbf24",
     "COLOR_WHITE": "#ffffff",
+    "COLOR_STATUS_OPTIMAL_BG": "#052e16",
+    "COLOR_STATUS_OPTIMAL_BORDER": "#16a34a",
+    "COLOR_STATUS_OPTIMAL_TOP": "#22c55e",
+    "COLOR_STATUS_OPTIMAL_TEXT": "#bbf7d0",
+    "COLOR_STATUS_FEASIBLE_BG": "#1c1407",
+    "COLOR_STATUS_FEASIBLE_BORDER": "#ca8a04",
+    "COLOR_STATUS_FEASIBLE_TOP": "#eab308",
+    "COLOR_STATUS_FEASIBLE_TEXT": "#fef08a",
+    "COLOR_STATUS_PROBLEM_BG": "#1a0505",
+    "COLOR_STATUS_PROBLEM_BORDER": "#dc2626",
+    "COLOR_STATUS_PROBLEM_TOP": "#ef4444",
+    "COLOR_STATUS_PROBLEM_TEXT": "#fecaca",
 }
 
 _LIGHT_COLORS: dict[str, str] = {
-    "COLOR_BG_MAIN": "#f0f0f0",
-    "COLOR_TEXT_PRIMARY": "#1a1a1a",
-    "COLOR_TEXT_MUTED": "#606060",
+    "COLOR_BG_MAIN": "#f4f5f9",
+    "COLOR_TEXT_PRIMARY": "#1a1c2a",
+    "COLOR_TEXT_MUTED": "#6b7280",
     "COLOR_PANEL_BG": "#ffffff",
-    "COLOR_PANEL_ALT_BG": "#f8f8f8",
-    "COLOR_PANEL_BORDER": "#d0d0d0",
-    "COLOR_PANEL_DIVIDER": "#e0e0e0",
-    "COLOR_BUTTON_BG": "#e8e8e8",
-    "COLOR_BUTTON_HOVER_BG": "#dcdcdc",
-    "COLOR_BUTTON_PRESSED_BG": "#d0d0d0",
-    "COLOR_HEADER_BG": "#e4e4e4",
-    "COLOR_ROW_HOVER_BG": "#eef4fb",
-    "COLOR_ACCENT": "#2980b9",
-    "COLOR_ACCENT_HOVER": "#3490cc",
+    "COLOR_PANEL_ALT_BG": "#f8f9fc",
+    "COLOR_PANEL_BORDER": "#e2e5ef",
+    "COLOR_PANEL_DIVIDER": "#ebeef5",
+    "COLOR_BUTTON_BG": "#eef0f8",
+    "COLOR_BUTTON_HOVER_BG": "#e4e7f4",
+    "COLOR_BUTTON_PRESSED_BG": "#d8dcee",
+    "COLOR_HEADER_BG": "#edf0f8",
+    "COLOR_ROW_HOVER_BG": "#eef1ff",
+    "COLOR_ACCENT": "#6366f1",
+    "COLOR_ACCENT_HOVER": "#4f46e5",
+    "COLOR_ACCENT_ACTION": "#d97706",
+    "COLOR_ACCENT_ACTION_HOVER": "#b45309",
     "COLOR_WHITE": "#ffffff",
+    "COLOR_STATUS_OPTIMAL_BG": "#dcfce7",
+    "COLOR_STATUS_OPTIMAL_BORDER": "#16a34a",
+    "COLOR_STATUS_OPTIMAL_TOP": "#22c55e",
+    "COLOR_STATUS_OPTIMAL_TEXT": "#14532d",
+    "COLOR_STATUS_FEASIBLE_BG": "#fef9c3",
+    "COLOR_STATUS_FEASIBLE_BORDER": "#ca8a04",
+    "COLOR_STATUS_FEASIBLE_TOP": "#eab308",
+    "COLOR_STATUS_FEASIBLE_TEXT": "#713f12",
+    "COLOR_STATUS_PROBLEM_BG": "#fee2e2",
+    "COLOR_STATUS_PROBLEM_BORDER": "#dc2626",
+    "COLOR_STATUS_PROBLEM_TOP": "#ef4444",
+    "COLOR_STATUS_PROBLEM_TEXT": "#7f1d1d",
 }
 
 
@@ -174,6 +204,7 @@ def render_stylesheet(
     if colors is None:
         colors = _DARK_COLORS if dark else _LIGHT_COLORS
     token_map = {
+        **{f"@{k}@": v for k, v in colors.items()},
         "@FONT_BASE_SIZE@": str(GUI.FONT_BASE_SIZE),
         "@TAB_PANE_MARGIN_TOP@": str(GUI.TAB_PANE_MARGIN_TOP),
         "@TAB_PADDING_V@": str(GUI.TAB_PADDING_V),
@@ -183,7 +214,6 @@ def render_stylesheet(
         "@TAB_MIN_WIDTH@": str(GUI.TAB_MIN_WIDTH),
         "@FONT_KPI_TITLE_SIZE@": str(GUI.FONT_KPI_TITLE_SIZE),
         "@FONT_KPI_VALUE_SIZE@": str(GUI.FONT_KPI_VALUE_SIZE),
-        **{f"@{k}@": v for k, v in colors.items()},
     }
     out = stylesheet_template
     for token, value in token_map.items():

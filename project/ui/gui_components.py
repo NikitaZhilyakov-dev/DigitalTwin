@@ -75,7 +75,7 @@ def create_toolbar() -> ToolbarBundle:
     csv_file_badge.setMinimumWidth(220)
     time_limit_label = QLabel("Лимит времени:")
     time_limit_label.setObjectName("timeLimitLabel")
-    theme_btn = create_button("☀ Светлая тема")
+    theme_btn = create_button("☀  Светлая")
     theme_btn.setObjectName("themeToggleBtn")
     theme_btn.setFixedWidth(140)
 

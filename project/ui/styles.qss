@@ -1,73 +1,101 @@
-/* Global theme */
+/* ─── Global ─────────────────────────────────────────────────────────────── */
 QWidget {
     background-color: @COLOR_BG_MAIN@;
     color: @COLOR_TEXT_PRIMARY@;
     font-size: @FONT_BASE_SIZE@px;
+    font-family: "Inter", "Segoe UI", "SF Pro Display", sans-serif;
 }
 
 QMainWindow {
     background-color: @COLOR_BG_MAIN@;
 }
 
-/* Toolbar */
+/* ─── Toolbar panel ──────────────────────────────────────────────────────── */
 QFrame#toolbarPanel {
     background-color: @COLOR_PANEL_BG@;
     border: 1px solid @COLOR_PANEL_BORDER@;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
 QPushButton {
     background-color: @COLOR_BUTTON_BG@;
     color: @COLOR_TEXT_PRIMARY@;
     border: 1px solid @COLOR_PANEL_BORDER@;
     border-radius: 8px;
-    padding: 8px 14px;
+    padding: 8px 16px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
 }
 
 QPushButton:hover {
-    border-color: @COLOR_ACCENT@;
     background-color: @COLOR_BUTTON_HOVER_BG@;
+    border-color: @COLOR_ACCENT@;
+    color: @COLOR_WHITE@;
 }
 
 QPushButton:pressed {
     background-color: @COLOR_BUTTON_PRESSED_BG@;
 }
 
+/* Primary action button — Amber */
 QPushButton#accentButton {
-    background-color: @COLOR_ACCENT@;
-    color: @COLOR_WHITE@;
-    border: 1px solid @COLOR_ACCENT@;
-    font-weight: 600;
+    background-color: @COLOR_ACCENT_ACTION@;
+    color: #1a1200;
+    border: 1px solid @COLOR_ACCENT_ACTION@;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
 QPushButton#accentButton:hover {
-    background-color: @COLOR_ACCENT_HOVER@;
-    border-color: @COLOR_ACCENT_HOVER@;
+    background-color: @COLOR_ACCENT_ACTION_HOVER@;
+    border-color: @COLOR_ACCENT_ACTION_HOVER@;
 }
 
-QLabel#csvFileBadge {
-    background-color: @COLOR_PANEL_BG@;
+QPushButton#accentButton:pressed {
+    background-color: @COLOR_ACCENT_ACTION@;
+}
+
+QPushButton#themeToggleBtn {
+    background-color: transparent;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    color: @COLOR_TEXT_MUTED@;
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+QPushButton#themeToggleBtn:hover {
+    border-color: @COLOR_ACCENT@;
     color: @COLOR_TEXT_PRIMARY@;
+    background-color: @COLOR_BUTTON_HOVER_BG@;
+}
+
+/* ─── CSV badge ──────────────────────────────────────────────────────────── */
+QLabel#csvFileBadge {
+    background-color: @COLOR_BUTTON_BG@;
+    color: @COLOR_TEXT_MUTED@;
     border: 1px solid @COLOR_PANEL_BORDER@;
     border-radius: 8px;
     padding: 8px 14px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 QLabel#csvFileBadge[loadState="success"] {
-    background-color: #1f6f3d;
-    border: 1px solid #2a8c50;
-    color: @COLOR_WHITE@;
+    background-color: #14532d;
+    border: 1px solid #16a34a;
+    color: #bbf7d0;
 }
 
 QLabel#csvFileBadge[loadState="error"] {
-    background-color: #7a2e2e;
-    border: 1px solid #9a3a3a;
-    color: @COLOR_WHITE@;
+    background-color: #450a0a;
+    border: 1px solid #dc2626;
+    color: #fecaca;
 }
 
+/* ─── Labels ─────────────────────────────────────────────────────────────── */
 QLabel {
     color: @COLOR_TEXT_PRIMARY@;
+    background-color: transparent;
 }
 
 #hintLabel {
@@ -78,30 +106,35 @@ QLabel {
     background-color: @COLOR_BUTTON_BG@;
     border: 1px solid @COLOR_PANEL_BORDER@;
     border-radius: 8px;
-    padding: 8px 10px;
-    color: @COLOR_TEXT_PRIMARY@;
-    font-weight: 600;
+    padding: 8px 12px;
+    color: @COLOR_TEXT_MUTED@;
+    font-weight: 500;
 }
 
+/* ─── SpinBox ────────────────────────────────────────────────────────────── */
 QSpinBox {
-    background-color: @COLOR_PANEL_BG@;
+    background-color: @COLOR_BUTTON_BG@;
     border: 1px solid @COLOR_PANEL_BORDER@;
-    border-radius: 6px;
-    padding: 6px 8px;
+    border-radius: 8px;
+    padding: 7px 8px;
     color: @COLOR_TEXT_PRIMARY@;
 }
 
-/* Tabs */
+QSpinBox:focus {
+    border-color: @COLOR_ACCENT@;
+}
+
+QSpinBox::up-button, QSpinBox::down-button {
+    background: transparent;
+    border: none;
+    width: 16px;
+}
+
+/* ─── Tabs ───────────────────────────────────────────────────────────────── */
 QTabWidget::pane {
     border: none;
     background: transparent;
     margin-top: @TAB_PANE_MARGIN_TOP@px;
-}
-
-QTabBar::tear {
-    width: 0;
-    border: none;
-    background: transparent;
 }
 
 QTabWidget > QTabBar {
@@ -113,54 +146,79 @@ QTabBar {
     background: transparent;
 }
 
+QTabBar::tear {
+    width: 0;
+    border: none;
+    background: transparent;
+}
+
 QTabBar::scroller {
     border: none;
 }
 
+/* Inactive tab — subtle ghost pill */
 QTabBar::tab {
-    background: @COLOR_ACCENT@;
-    color: @COLOR_WHITE@;
-    border: 1px solid @COLOR_ACCENT@;
-    border-radius: 7px;
+    background: transparent;
+    color: @COLOR_TEXT_MUTED@;
+    border: 1px solid @COLOR_PANEL_BORDER@;
+    border-radius: 8px;
     padding: @TAB_PADDING_V@px @TAB_PADDING_H@px;
     margin-right: @TAB_MARGIN_RIGHT@px;
     margin-bottom: @TAB_MARGIN_BOTTOM@px;
     min-width: @TAB_MIN_WIDTH@px;
-    font-weight: 600;
-}
-
-QTabBar::tab:selected {
-    background: @COLOR_ACCENT_HOVER@;
-    color: @COLOR_WHITE@;
-    border-color: @COLOR_ACCENT_HOVER@;
+    font-weight: 500;
 }
 
 QTabBar::tab:hover {
-    background: @COLOR_ACCENT_HOVER@;
-    color: @COLOR_WHITE@;
-    border-color: @COLOR_ACCENT_HOVER@;
+    background: @COLOR_BUTTON_HOVER_BG@;
+    color: @COLOR_TEXT_PRIMARY@;
+    border-color: @COLOR_ACCENT@;
 }
 
-/* KPI cards */
+/* Active tab — filled Indigo */
+QTabBar::tab:selected {
+    background: @COLOR_ACCENT@;
+    color: @COLOR_WHITE@;
+    border-color: @COLOR_ACCENT@;
+    font-weight: 700;
+}
+
+/* ─── KPI Cards ──────────────────────────────────────────────────────────── */
 QFrame#kpiCard {
     background-color: @COLOR_PANEL_BG@;
     border: 1px solid @COLOR_PANEL_BORDER@;
+    border-top: 3px solid @COLOR_ACCENT@;
     border-radius: 10px;
 }
 
 QFrame#kpiCard[statusLevel="optimal"] {
-    background-color: #1f6f3d;
-    border: 1px solid #2a8c50;
+    background-color: @COLOR_STATUS_OPTIMAL_BG@;
+    border: 1px solid @COLOR_STATUS_OPTIMAL_BORDER@;
+    border-top: 3px solid @COLOR_STATUS_OPTIMAL_TOP@;
+}
+
+QFrame#kpiCard[statusLevel="optimal"] QLabel {
+    color: @COLOR_STATUS_OPTIMAL_TEXT@;
 }
 
 QFrame#kpiCard[statusLevel="feasible"] {
-    background-color: #8a6d1f;
-    border: 1px solid #b58d28;
+    background-color: @COLOR_STATUS_FEASIBLE_BG@;
+    border: 1px solid @COLOR_STATUS_FEASIBLE_BORDER@;
+    border-top: 3px solid @COLOR_STATUS_FEASIBLE_TOP@;
+}
+
+QFrame#kpiCard[statusLevel="feasible"] QLabel {
+    color: @COLOR_STATUS_FEASIBLE_TEXT@;
 }
 
 QFrame#kpiCard[statusLevel="problem"] {
-    background-color: #7a2e2e;
-    border: 1px solid #9a3a3a;
+    background-color: @COLOR_STATUS_PROBLEM_BG@;
+    border: 1px solid @COLOR_STATUS_PROBLEM_BORDER@;
+    border-top: 3px solid @COLOR_STATUS_PROBLEM_TOP@;
+}
+
+QFrame#kpiCard[statusLevel="problem"] QLabel {
+    color: @COLOR_STATUS_PROBLEM_TEXT@;
 }
 
 QLabel#kpiTitle {
@@ -168,36 +226,38 @@ QLabel#kpiTitle {
     font-size: @FONT_KPI_TITLE_SIZE@px;
     font-weight: 700;
     background-color: transparent;
+    letter-spacing: -0.3px;
 }
 
 QLabel#kpiSubtitle {
-    color: @COLOR_TEXT_PRIMARY@;
+    color: @COLOR_TEXT_MUTED@;
     font-size: @FONT_BASE_SIZE@px;
-    font-weight: 600;
+    font-weight: 500;
     background-color: transparent;
 }
 
 QLabel#kpiValue {
     color: @COLOR_TEXT_PRIMARY@;
     font-size: @FONT_KPI_VALUE_SIZE@px;
-    font-weight: 700;
+    font-weight: 800;
     margin-top: -2px;
     background-color: transparent;
+    letter-spacing: -1px;
 }
 
-/* Tables */
+/* ─── Tables ─────────────────────────────────────────────────────────────── */
 QTableWidget {
     background-color: @COLOR_PANEL_BG@;
     alternate-background-color: @COLOR_PANEL_ALT_BG@;
     border: 1px solid @COLOR_PANEL_BORDER@;
-    border-radius: 8px;
-    gridline-color: @COLOR_PANEL_BORDER@;
+    border-radius: 10px;
+    gridline-color: transparent;
     selection-background-color: @COLOR_ACCENT@;
     selection-color: @COLOR_WHITE@;
 }
 
 QTableWidget::item {
-    padding: 6px 8px;
+    padding: 7px 10px;
     border-bottom: 1px solid @COLOR_PANEL_DIVIDER@;
 }
 
@@ -205,11 +265,60 @@ QTableWidget::item:hover {
     background-color: @COLOR_ROW_HOVER_BG@;
 }
 
+QTableWidget::item:selected {
+    background-color: @COLOR_ACCENT@;
+    color: @COLOR_WHITE@;
+}
+
 QHeaderView::section {
-    background-color: @COLOR_BUTTON_BG@;
-    color: @COLOR_TEXT_PRIMARY@;
+    background-color: @COLOR_HEADER_BG@;
+    color: @COLOR_TEXT_MUTED@;
     border: none;
     border-bottom: 1px solid @COLOR_PANEL_BORDER@;
-    padding: 8px;
+    padding: 9px 10px;
     font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+/* ─── ScrollBar ──────────────────────────────────────────────────────────── */
+QScrollBar:vertical {
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: @COLOR_PANEL_BORDER@;
+    border-radius: 4px;
+    min-height: 24px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: @COLOR_ACCENT@;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0;
+}
+
+QScrollBar:horizontal {
+    background: transparent;
+    height: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle:horizontal {
+    background: @COLOR_PANEL_BORDER@;
+    border-radius: 4px;
+    min-width: 24px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: @COLOR_ACCENT@;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0;
 }
